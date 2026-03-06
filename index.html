@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
 
 body{
 text-align:center;
@@ -18,9 +15,8 @@ overflow:hidden;
 }
 
 .buttons{
-display:flex;
-justify-content:center;
-gap:20px;
+position:relative;
+display:inline-block;
 margin-top:40px;
 }
 
@@ -29,23 +25,27 @@ padding:15px 30px;
 font-size:18px;
 border:none;
 border-radius:10px;
+position:absolute;
 }
 
 #yes{
 background:#ff4d6d;
 color:white;
-position:relative;
+left:-120px;
+top:0;
 }
 
 #no{
 background:#28a745;
 color:white;
+left:0;
+top:0;
 }
 
 .emoji{
 position:fixed;
 top:-50px;
-font-size:30px;
+font-size:32px;
 animation:fall linear;
 }
 
@@ -54,35 +54,24 @@ animation:fall linear;
 100%{transform:translateY(110vh);}
 }
 
-</style>
-
-</head>
-
-<body>
-
-<h2>Samu! Bhande ghasun zale ka? 😏</h2>
-
-<div class="buttons">
+</style></head><body><h2>Samu! Bhande ghasun zale ka? 😉</h2><div class="buttons">
 <button id="yes">Yes 😅</button>
 <button id="no">No 😎</button>
-</div>
-
-<script>
+</div><script>
 
 const yesBtn=document.getElementById("yes");
 const noBtn=document.getElementById("no");
 
-let move=0;
+let angle=0;
 
 function moveYes(){
 
-move+=40;
+angle+=40;
 
-if(move>120){
-move=-120;
-}
+let x=Math.cos(angle)*100;
+let y=Math.sin(angle)*40;
 
-yesBtn.style.transform="translateX("+move+"px)";
+yesBtn.style.transform="translate("+x+"px,"+y+"px)";
 }
 
 yesBtn.addEventListener("mouseover",moveYes);
@@ -90,35 +79,36 @@ yesBtn.addEventListener("touchstart",moveYes);
 
 noBtn.onclick=function(){
 
-let emojis=["🍴","🫡"];
+if(navigator.vibrate){
+navigator.vibrate(400);
+}
 
-for(let i=0;i<6;i++){
+let emojis=["🍴","🍽️","🥄"];
+
+for(let i=0;i<20;i++){
+
+setTimeout(()=>{
 
 let e=document.createElement("div");
-
 e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-
 e.className="emoji";
 
 e.style.left=Math.random()*100+"vw";
-
-e.style.animationDuration=(3+Math.random()*2)+"s";
+e.style.animationDuration=(2+Math.random()*2)+"s";
 
 document.body.appendChild(e);
 
-setTimeout(()=>{
-e.remove();
-},5000);
+setTimeout(()=>e.remove(),4000);
+
+},i*100);
 
 }
 
 setTimeout(()=>{
 alert("Kai help Karu tuzi 👀🫰🏻");
-},800);
+},1000);
 
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
