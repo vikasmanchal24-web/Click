@@ -11,13 +11,18 @@ background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
 color:white;
-overflow:hidden;
+}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+position:relative;
 }
 
 button{
 padding:15px 30px;
 font-size:18px;
-margin:20px;
 border:none;
 border-radius:10px;
 }
@@ -25,7 +30,7 @@ border-radius:10px;
 #yes{
 background:#ff4d6d;
 color:white;
-position:absolute;
+position:relative;
 }
 
 #no{
@@ -33,33 +38,30 @@ background:#28a745;
 color:white;
 }
 
-#msg{
-margin-top:30px;
-font-size:24px;
-font-weight:bold;
-}
-
-</style></head><body><h2>Samu! Bhande ghasun zale ka? 😏</h2><button id="yes">Yes 😅</button>
+</style></head><body><h2>Samu! Bhande ghasun zale ka? 😏</h2><div class="buttons">
+<button id="yes">Yes 😅</button>
 <button id="no">No 😎</button>
-
-<div id="msg"></div><script>
+</div><script>
 
 const yesBtn=document.getElementById("yes");
 const noBtn=document.getElementById("no");
-const msg=document.getElementById("msg");
+
+let angle=0;
 
 function moveYes(){
-let x=Math.random()*window.innerWidth;
-let y=Math.random()*window.innerHeight;
-yesBtn.style.left=x+"px";
-yesBtn.style.top=y+"px";
+angle+=30;
+
+let x=Math.cos(angle)*60;
+let y=Math.sin(angle)*20;
+
+yesBtn.style.transform="translate("+x+"px,"+y+"px)";
 }
 
 yesBtn.addEventListener("mouseover",moveYes);
 yesBtn.addEventListener("touchstart",moveYes);
 
 noBtn.onclick=function(){
-msg.innerHTML="Kai help Karu tuzi 👀🫰🏻";
+alert("Kai help Karu tuzi 👀🫰🏻");
 }
 
 </script></body>
