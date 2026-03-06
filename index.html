@@ -23,69 +23,43 @@ border-radius:10px;
 }
 
 #yes{
+background:#ff4d6d;
+color:white;
+position:absolute;
+}
+
+#no{
 background:#28a745;
 color:white;
 }
 
-#no{
-background:#888;
-position:absolute;
+#msg{
+margin-top:30px;
+font-size:24px;
+font-weight:bold;
 }
 
-.emoji{
-position:fixed;
-top:-40px;
-font-size:32px;
-animation:fall linear;
-}
+</style></head><body><h2>Samu! Bhande ghasun zale ka? 😏</h2><button id="yes">Yes 😅</button>
+<button id="no">No 😎</button>
 
-@keyframes fall{
-0%{transform:translateY(-50px);}
-100%{transform:translateY(110vh);}
-}
+<div id="msg"></div><script>
 
-</style></head><body><h2>Samu! Bhande ghasun zale ka? 😏</h2><button id="yes">Yes 😌</button>
-<button id="no">No 🙈</button>
-
-<script>
-
-const noBtn=document.getElementById("no");
 const yesBtn=document.getElementById("yes");
+const noBtn=document.getElementById("no");
+const msg=document.getElementById("msg");
 
-function move(){
+function moveYes(){
 let x=Math.random()*window.innerWidth;
 let y=Math.random()*window.innerHeight;
-noBtn.style.left=x+"px";
-noBtn.style.top=y+"px";
+yesBtn.style.left=x+"px";
+yesBtn.style.top=y+"px";
 }
 
-noBtn.addEventListener("mouseover",move);
-noBtn.addEventListener("touchstart",move);
+yesBtn.addEventListener("mouseover",moveYes);
+yesBtn.addEventListener("touchstart",moveYes);
 
-yesBtn.onclick=function(){
-
-alert("Ho ka 🥺");
-
-let emojis=["🍴","🫡"];
-
-for(let i=0;i<5;i++){
-
-setTimeout(()=>{
-
-let e=document.createElement("div");
-e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-e.className="emoji";
-e.style.left=Math.random()*100+"vw";
-e.style.animationDuration=(3+Math.random()*2)+"s";
-
-document.body.appendChild(e);
-
-setTimeout(()=>e.remove(),5000);
-
-},i*400);
-
-}
-
+noBtn.onclick=function(){
+msg.innerHTML="Kai help Karu tuzi 👀🫰🏻";
 }
 
 </script></body>
