@@ -1,0 +1,89 @@
+<!DOCTYPE html><html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+
+body{
+text-align:center;
+font-family:Arial;
+margin-top:150px;
+background:#111;
+color:white;
+overflow:hidden;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+margin:20px;
+border:none;
+border-radius:10px;
+}
+
+#yes{
+background:#28a745;
+color:white;
+}
+
+#no{
+background:#888;
+position:absolute;
+}
+
+.emoji{
+position:fixed;
+top:-40px;
+font-size:32px;
+animation:fall linear;
+}
+
+@keyframes fall{
+0%{transform:translateY(-50px);}
+100%{transform:translateY(110vh);}
+}
+
+</style></head><body><h2>Samu! Bhande ghasun zale ka? 😏</h2><button id="yes">Yes 😌</button>
+<button id="no">No 🙈</button>
+
+<script>
+
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+
+function move(){
+let x=Math.random()*window.innerWidth;
+let y=Math.random()*window.innerHeight;
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+}
+
+noBtn.addEventListener("mouseover",move);
+noBtn.addEventListener("touchstart",move);
+
+yesBtn.onclick=function(){
+
+alert("Ho ka 🥺");
+
+let emojis=["🍴","🫡"];
+
+for(let i=0;i<5;i++){
+
+setTimeout(()=>{
+
+let e=document.createElement("div");
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+e.className="emoji";
+e.style.left=Math.random()*100+"vw";
+e.style.animationDuration=(3+Math.random()*2)+"s";
+
+document.body.appendChild(e);
+
+setTimeout(()=>e.remove(),5000);
+
+},i*400);
+
+}
+
+}
+
+</script></body>
+</html>
