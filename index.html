@@ -61,7 +61,28 @@ yesBtn.addEventListener("mouseover",moveYes);
 yesBtn.addEventListener("touchstart",moveYes);
 
 noBtn.onclick=function(){
+
+let emojis=["🍴","🫡"];
+
+for(let i=0;i<7;i++){
+
+let e=document.createElement("div");
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+e.className="emoji";
+
+e.style.left=Math.random()*100+"vw";
+e.style.animationDuration=(3+Math.random()*2)+"s";
+
+document.body.appendChild(e);
+
+setTimeout(()=>e.remove(),5000);
+
+}
+
+setTimeout(()=>{
 alert("Kai help Karu tuzi 👀🫰🏻");
+},800);
+
 }
 
 </script></body>
