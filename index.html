@@ -1,23 +1,27 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
 
 body{
 text-align:center;
 font-family:Arial;
-margin-top:150px;
-background-image:url("bartan.jpg");
+margin-top:120px;
+background-image:url("bartaan.jpg");
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
 color:white;
+overflow:hidden;
 }
 
 .buttons{
 display:flex;
 justify-content:center;
 gap:20px;
-position:relative;
+margin-top:40px;
 }
 
 button{
@@ -38,23 +42,47 @@ background:#28a745;
 color:white;
 }
 
-</style></head><body><h2>Samu! Bhande ghasun zale ka? 😏</h2><div class="buttons">
+.emoji{
+position:fixed;
+top:-50px;
+font-size:30px;
+animation:fall linear;
+}
+
+@keyframes fall{
+0%{transform:translateY(-50px);}
+100%{transform:translateY(110vh);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Samu! Bhande ghasun zale ka? 😏</h2>
+
+<div class="buttons">
 <button id="yes">Yes 😅</button>
 <button id="no">No 😎</button>
-</div><script>
+</div>
+
+<script>
 
 const yesBtn=document.getElementById("yes");
 const noBtn=document.getElementById("no");
 
-let angle=0;
+let move=0;
 
 function moveYes(){
-angle+=30;
 
-let x=Math.cos(angle)*60;
-let y=Math.sin(angle)*20;
+move+=40;
 
-yesBtn.style.transform="translate("+x+"px,"+y+"px)";
+if(move>120){
+move=-120;
+}
+
+yesBtn.style.transform="translateX("+move+"px)";
 }
 
 yesBtn.addEventListener("mouseover",moveYes);
@@ -64,18 +92,23 @@ noBtn.onclick=function(){
 
 let emojis=["🍴","🫡"];
 
-for(let i=0;i<7;i++){
+for(let i=0;i<6;i++){
 
 let e=document.createElement("div");
+
 e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
 e.className="emoji";
 
 e.style.left=Math.random()*100+"vw";
+
 e.style.animationDuration=(3+Math.random()*2)+"s";
 
 document.body.appendChild(e);
 
-setTimeout(()=>e.remove(),5000);
+setTimeout(()=>{
+e.remove();
+},5000);
 
 }
 
@@ -85,5 +118,7 @@ alert("Kai help Karu tuzi 👀🫰🏻");
 
 }
 
-</script></body>
+</script>
+
+</body>
 </html>
